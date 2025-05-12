@@ -8,11 +8,11 @@ Computation of ARL Curves for V chart and VSQ chart
 It calculates the Average Run Length (ARL) for either the V or VSQ control charts, based on the specified sample size, shift constant, and false alarm probability. The user can choose between the two types of control charts.
 }
 \usage{
-mxarl(n_val = 1, delta = seq(1, 3, length.out = 100), alpha = 0.0027, type = "V")
+mxarl(n = 1, delta = seq(1, 3, length.out = 100), alpha = 0.0027, type = "V")
 }
 
 \arguments{
-  \item{n_val}{
+  \item{n}{
 A numeric vector specifying the sample sizes. Default is \code{1}.
   }
   \item{delta}{
@@ -44,5 +44,5 @@ Zahid Khan
 \code{\link{mxpw}}
 }
 \examples{
-mxarl(n_val = c(5,10),  delta = seq(1, 3, length.out = 100), alpha = 0.0027, type = "V")
+mxarl(n= c(5,10),  delta = seq(1, 3, length.out = 100), alpha = 0.0027, type = "V")
 }

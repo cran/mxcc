@@ -7,11 +7,11 @@ Power Curves Construction for V chart and VSQ chart
 This function computes the power curves for V or VSQ control charts based on the Maxwell distribution. It allows the user to analyze the performance of these charts under different sample sizes and shifts in the process parameter.
 }
 \usage{
-mxpw(n_val = 1, delta = seq(1, 3, length.out = 100), alpha = 0.0027, type = "V")
+mxpw(n = 1, delta = seq(1, 3, length.out = 100), alpha = 0.0027, type = "V")
 }
 
 \arguments{
-  \item{n_val}{
+  \item{n}{
 A numeric vector specifying the sample sizes. Default is \code{1}.
   }
   \item{delta}{

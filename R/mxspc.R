@@ -7,7 +7,7 @@
 #              University of Pannonia, Hungary                                #
 #              kosztyan.zsolt@gtk.uni-pannon.hu                               #
 #                                                                             #
-# Last modified: October 2024                                                  #
+# Last modified: February 2025                                                  #
 #-----------------------------------------------------------------------------#
 #' @import chi
 #' @import shotGroups
@@ -15,7 +15,6 @@
 #' @export
 #  V control chart and VSQ control chart for simulated data
 mxspc <- function(m = 25, n = 4, alpha = 0.0027, sigma, limit = "PCL", chart = "V", summary = FALSE) {
-
   if (missing(sigma)) {
     stop("You must provide a value for 'sigma'.")
   }
@@ -61,34 +60,9 @@ mxspc <- function(m = 25, n = 4, alpha = 0.0027, sigma, limit = "PCL", chart = "
     }
   }
 
-  the_Mean <- CL
-  the_LCL <- LCL
-  the_UCL <- UCL
+  output <- list(v = v, a = a, LCL = LCL, CL = CL, UCL = UCL, m = m, n = n, sigma = sigma, limit = limit, chart = chart)
 
-  y_label <- ifelse(chart == "V", "V", expression(paste(V[SQ])))
-
-  oldpar <- par(no.readonly = TRUE)  # Save current 'par' settings
-  on.exit(par(oldpar))               # Restore 'par' settings upon exit
-  par(mar = c(5, 5, 4, 10) + 0.1)   # Modify 'par'
-
-  plot(1:m, v, type = "b", pch = 20, col = "darkgreen", lwd = 2,
-       ylim = c(the_LCL * 0.9, the_UCL * 1.1), xlab = "Sample Number",
-       ylab = y_label, cex.axis = 1.2, cex.main = 1.5,
-       main = "")
-
-  abline(h = the_LCL, col = "blue", lty = 2, lwd = 2)
-  abline(h = the_Mean, col = "blue", lty = 1, lwd = 2)
-  abline(h = the_UCL, col = "blue", lty = 2, lwd = 2)
-
-  if (limit == "PCL") {
-    legend_labels <- c("LPC", "CL", "UPL", "Ploting Statistic")
-  } else {
-    legend_labels <- c("LCL", "CL", "UCL", "Ploting Statistic")
-  }
-
-  legend("topright", inset = c(-0.45, 0), legend = legend_labels,
-         col = c("blue", "blue", "blue", "darkgreen"), lty = c(2, 1, 2, 1), lwd = 2,
-         pch = c(NA, NA, NA, 20), xpd = TRUE, bty = "n", cex = 0.9)
+  class(output) <- "mxspc"
 
   if (summary) {
     cat("Summary of Control Chart Parameters:\n")
@@ -102,5 +76,5 @@ mxspc <- function(m = 25, n = 4, alpha = 0.0027, sigma, limit = "PCL", chart = "
     cat("Chart Type:", chart, "\n")
   }
 
-  return(invisible(list(LCL = LCL, CL = CL, UCL = UCL, m = m, n = n, sigma = sigma, limit = limit, chart = chart)))
+  return(invisible(output))
 }

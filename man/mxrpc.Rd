@@ -5,7 +5,7 @@
 V chart and VSQ chart Construction for Real Process Control
 }
 \description{
-The \code{mxrpc} function constructs control limits for the V and VSQ control charts using real data. It allows the user to specify the value of \code{alpha}, the type of control limit (Probability Limit Control Chart or K-Sigma Control Chart), and the type of control chart (V or VSQ). The function provides a summary of control chart parameters and plots the corresponding control chart.
+The \code{mxrpc} function constructs control limits for the V and VSQ control charts using real data. It allows the user to specify the value of \code{alpha}, the type of control limit (Probability Limit Control Chart or K-Sigma Control Chart), and the type of control chart (V or VSQ). The function provides a brief summary of control chart parameters.
 }
 \usage{
 mxrpc(data, alpha = 0.0027, limit = "PCL", chart = "V", summary = FALSE)
@@ -25,14 +25,27 @@ The type of control limit to be used: either "PCL" for Probability Limit Control
 The type of control chart to construct: either "V" for V chart or "VSQ" for VSQ chart. Default is \code{chart = "V"}.
 }
   \item{summary}{
-Logical value indicating whether to display a summary of control chart parameters. Default is \code{summary = FALSE}.
+Logical value indicating whether to display a short summary of control chart parameters. Default is \code{summary = FALSE}.
 }
 }
-\details{
-This function takes a real data set and generates control charts (V or VSQ) based on the specified control limit type (PCL or KCL). The function outputs both a graphical representation of the control chart and a summary of the control chart parameters, including control limits, central line, and the values used for constructing the chart.
-}
+
+\details{This function takes a real data set and generates control charts (V or VSQ) based on the specified control limit type (PCL or KCL). When \code{summary = TRUE}, the function outputs a brief summary of the control chart parameters, including the control limits, central line, and the values used for constructing the chart. For a more comprehensive summary and graphical display of the selected chart, users are referred to the \code{summary()} and \code{plot()}functions.}
+
 \value{
-The function outputs a graph of the selected control chart (V or VSQ), and if \code{summary = TRUE}, it prints a summary of the control chart parameters including the lower control limit (LCL), center line (CL), and upper control limit (UCL).
+An invisible list containing the following components:
+\itemize{
+  \item \code{v}: A vector of plotting statistics.
+  \item \code{data}: A real input data frame
+  \item \code{LCL}: Lower control limit.
+  \item \code{CL}: Central line.
+  \item \code{UCL}: Upper control limit.
+  \item \code{m}: Number of subgroups.
+  \item \code{n}: Sample size per subgroup.
+  \item \code{sig}: Estimated sigma value.
+  \item \code{limit}: Type of control limit used.
+  \item \code{chart}: Type of control chart constructed.
+}
+If \code{summary = TRUE}, the function also prints a textual summary of contructed Maxwell control chart.
 }
 \references{
 Hossain, M.P., Omar, M.H. and Riaz, M. (2017) "New V control chart for the Maxwell distribution". Journal of Statistical Computation and Simulation, 87(3), pp.594-606. <doi:10.1080/00949655.2016.1222391>
@@ -44,8 +57,9 @@ Zahid Khan
 }
 
 \seealso{
-\code{\link{mxspc}}
+\code{\link{mxspc}},\code{\link{plot}},\code{\link{summary}}
 }
 \examples{
-mxrpc(data=strength_data, alpha = 0.0027, limit = "PCL", chart = "VSQ", summary = TRUE)
+mxrpc(data=strength_data, alpha = 0.0027, limit = "PCL", chart = "VSQ",summary=TRUE)
+
 }

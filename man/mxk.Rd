@@ -1,10 +1,10 @@
 \name{mxk}
 \alias{mxk}
 \title{
-k -Coefficients Determination for V Chart and VSQ Chart for  Maxwell-Distributed Quality Characteristics
+Determination of Probability Limit Coefficients for V and VSQ Charts for Maxwell-Distributed Quality Characteristics
 }
 \description{
-The function \code{mxk} calculates the coefficients for V and VSQ control charts used to monitor the scale parameter of Maxwell-distributed quality characteristics. It computes two coefficients based on the chosen chart type. For the V chart, the function returns \code{L1} and \code{L2}, while for the VSQ chart, it returns \code{P1} and \code{P2}.
+The function \code{mxk} calculates the coefficients for V and VSQ control charts used to monitor the scale parameter of Maxwell-distributed quality characteristics. It computes two coefficients based on the chosen chart type. For the V chart, the function returns \code{L1} and \code{L2}, while for the VSQ chart, it returns \code{P1},\code{P2},\code{P3} and \code{P4}.The coefficients \code{P3} and \code{P4} are used in case of estimated scale parameter value.These coefficients are utilized to construct a probability limits-based control chart.
 }
 \usage{
 mxk(n = 1, alpha = 0.0027, type = "V")
@@ -30,6 +30,8 @@ Depending on the \code{type} of chart:
   \item{L2 }{Coefficient L2 for the V chart.}
   \item{P1 }{Coefficient P1 for the VSQ chart.}
   \item{P2 }{Coefficient P2 for the VSQ chart.}
+  \item{P3 }{Coefficient P3 for the VSQ chart.}
+  \item{P4 }{Coefficient P4 for the VSQ chart.}
 }
 \references{
 Hossain, M.P., Omar, M.H. and Riaz, M. (2017) "New V control chart for the Maxwell distribution". Journal of Statistical Computation and Simulation, 87(3), pp.594-606. <doi:10.1080/00949655.2016.1222391>

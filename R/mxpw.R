@@ -7,13 +7,13 @@
 #              University of Pannonia, Hungary                                #
 #              kosztyan.zsolt@gtk.uni-pannon.hu                               #
 #                                                                             #
-# Last modified: October 2024                                                  #
+# Last modified: February 2025                                                  #
 #-----------------------------------------------------------------------------#
 
 #' @import graphics
 #' @export
 #  Plot power curves for V or VSQ chart
-mxpw <- function(n_val = 1,
+mxpw <- function(n = 1,
                  delta = seq(1, 3, length.out = 100),
                  alpha = 0.0027,
                  type = "V") {
@@ -29,22 +29,22 @@ mxpw <- function(n_val = 1,
 
   power_vsq <- function(n, delta) {
     df <- 3 * n
-    a <- delta * qchi((1 - (alpha / 2)), df = df, ncp = 0, lower.tail = TRUE, log.p = FALSE)
-    b <- delta * qchi(alpha / 2, df = df, ncp = 0, lower.tail = TRUE, log.p = FALSE)
-    c <- pchi(a, df = df, ncp = 0, lower.tail = TRUE, log.p = FALSE)
-    d <- pchi(b, df = df, ncp = 0, lower.tail = TRUE, log.p = FALSE)
+    a <- delta * qchisq((1 - (alpha / 2)), df = df, ncp = 0, lower.tail = TRUE, log.p = FALSE)
+    b <- delta * qchisq(alpha / 2, df = df, ncp = 0, lower.tail = TRUE, log.p = FALSE)
+    c <- pchisq(a, df = df, ncp = 0, lower.tail = TRUE, log.p = FALSE)
+    d <- pchisq(b, df = df, ncp = 0, lower.tail = TRUE, log.p = FALSE)
     beta <- c - d
     power <- 1 - beta
     return(power)
   }
 
   if (type == "V") {
-    pd <- sapply(n_val, function(n) {
+    pd <- sapply(n, function(n) {
       sapply(delta, function(delta) power_v(n, delta))
     })
     chart_label <- "V Chart"
   } else if (type == "VSQ") {
-    pd <- sapply(n_val, function(n) {
+    pd <- sapply(n, function(n) {
       sapply(delta, function(delta) power_vsq(n, delta))
     })
     chart_label <- "VSQ Chart"
@@ -62,14 +62,13 @@ mxpw <- function(n_val = 1,
        xlab = "Shift constant", ylab = "Power", ylim = c(0, 1),
        main = "")
 
-  if (length(n_val) > 1) {
-    for (i in 2:length(n_val)) {
-      lines(delta, pd[, i], lty = line_types[i], lwd = 2)
+  if (length(n) > 1) {
+    for (i in 2:length(n)) {
+      lines(delta, pd[, i], lty = line_types[i %% length(line_types) + 1], lwd = 2)
     }
   }
 
-  if (length(n_val) > 1) {
-    legend("topleft", legend = paste("n =", n_val), lty = line_types, lwd = 2)
+  if (length(n) > 1) {
+    legend("topleft", legend = paste("n =", n), lty = line_types, lwd = 2)
   }
 }
-

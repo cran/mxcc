@@ -7,12 +7,12 @@
 #              University of Pannonia, Hungary                                #
 #              kosztyan.zsolt@gtk.uni-pannon.hu                               #
 #                                                                             #
-# Last modified: October 2024                                                  #
+# Last modified: February 2025                                                  #
 #-----------------------------------------------------------------------------#
 #' @import chi
 #' @import stats
 #' @export
-# L-sigma multiplier for V chart and VSQ chart
+# K-sigma multiplier for V chart and VSQ chart
 mxm <- function(n = 1, alpha = 0.0027, type = "V") {
   if (type == "V") {
         L <- qgamma(alpha, shape = (3 * n) / 2, rate = 1, lower.tail = TRUE, log.p = FALSE)
