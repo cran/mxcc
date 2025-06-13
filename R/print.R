@@ -59,6 +59,7 @@ print.mxrpc <- function(x, ...) {
   print(summary(x$v))
   cat("\nSummary Statistics for Real Data:\n")
   print(summary(x$data))
+  invisible(x)
 }
 
 #' @export
@@ -76,6 +77,7 @@ print.mxspc <- function(x, ...) {
   print(summary(x$v))
   cat("\nSummary Statistics for Simulated Data (x values):\n")
   print(summary(x$a))
+  invisible(x)
 }
 
 

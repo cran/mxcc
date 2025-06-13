@@ -30,7 +30,7 @@ summary.mxrpc <- function(object, ...) {
     data.summary = summary(object$data)
   )
   class(out) <- "summary.mxrpc"
-  return(out)
+  out
 }
 
 #' @export
@@ -48,6 +48,6 @@ summary.mxspc <- function(object, ...) {
     simulated.data.summary = summary(object$a)
   )
   class(out) <- "summary.mxspc"
-  return(out)
+  out
 }
 

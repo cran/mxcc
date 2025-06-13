@@ -1,4 +1,4 @@
-76fb7ef0e176fb5527342f40e5cb2eb0 *DESCRIPTION
+a5cefe5e9cd0d79638abdeeb50f5d228 *DESCRIPTION
 c11d6257a9dc14556a0a08685f7c0925 *NAMESPACE
 97cd075aa1bbb6b4b59d8380cfa64a7e *R/mxarl.R
 4bf8e53a9d535e5d79e38c043ff754d9 *R/mxk.R
@@ -9,8 +9,8 @@ c11d6257a9dc14556a0a08685f7c0925 *NAMESPACE
 c94aa7671cb3db9adea7213b0c1eff26 *R/mxrpc.R
 3196e563c929f4ff794959f723669472 *R/mxspc.R
 37764422f60846dd6bfe5871091add88 *R/plot.R
-48a29bd032deb9a43ad8dd98a9e62ca7 *R/print.R
-6dbcee7eb7f834749ac289b6a02893e8 *R/summary.R
+b7ddd3cb2104e71d90a0a9c93652b69c *R/print.R
+35b1a106a60dd8bfb98583e111a76dd2 *R/summary.R
 0ac60896b226a6e18d3586cff5e054c7 *data/failure_time.rda
 64e22f0078e558772029c4fa38c2bd10 *data/strength_data.rda
 c29a09ea76486a9c3312714ce69b3efb *man/failure_time.Rd
